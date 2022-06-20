@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-<?php include("head.php") ?>
+<?php include("head.php"); ?>
+<?php require_once("../controller/ProdutoController.php"); ?>
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $controller = new ProdutoController();
@@ -8,9 +9,11 @@
     }
 ?>
 <body>
-    <?php include("menu.php") ?>
+<hr>
+<a href="ProdutoIndex.php" class="btn btn-default">Voltar</a>
+<hr>
     <div class="row">
-        <form method="post" action="cadastro.php" id="form" name="form" onsubmit="validar(document.form); return false;" class="col-10">
+        <form method="post" action="ProdutoCreate.php" id="form" name="form" onsubmit="validar(document.form); return false;" class="col-10">
             <div class="form-group">
                 <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome do produto" required autofocus>
                 <input class="form-control" type="text" id="preco" name="preco" placeholder="Preco" required>

@@ -21,9 +21,9 @@ require_once("../controller/ProdutoController.php");?>
     }
 ?>
 <body>
-    <?php include("menu.php") ?>
+<a href="ProdutoIndex.php" class="btn btn-default">Voltar</a>
     <div class="row">
-        <form method="post" action="editar.php" id="form" name="form" onsubmit="validar(document.form); return false;" class="col-10">
+        <form method="post" action="ProdutoUpdate.php" id="form" name="form" onsubmit="validar(document.form); return false;" class="col-10">
             <div class="form-group">
                 <label class="control-label">Nome:</label>
                 <input class="form-control" type="text" id="nome" name="nome" value="<?php echo $produto->Nome; ?>" required autofocus>

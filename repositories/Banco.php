@@ -1,4 +1,5 @@
 <?php
+include_once("../init.php");
 
 class Banco
 {

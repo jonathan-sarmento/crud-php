@@ -19,7 +19,7 @@ class ProdutoController{
             echo "<th>".$produto->Quantidade ."</th>";
             echo "<td>".$produto->FornecedorId ."</td>";
             echo "<td>".$produto->CategoriaId ."</td>";
-            echo "<td><a class='btn btn-warning' href='editar.php?id=".$produto->Id."'>Editar</a><a class='btn btn-danger' href='delete.php?id=".$produto->Id."'>Excluir</a></td>";
+            echo "<td><a class='btn btn-warning' href='ProdutoUpdate.php?id=".$produto->Id."'>Editar</a><a class='btn btn-danger' href='ProdutoDelete.php?id=".$produto->Id."'>Excluir</a></td>";
             echo "</tr>";
         }
     }
@@ -46,7 +46,7 @@ class ProdutoController{
         $result = $_repository->Create($produto);
 
         if($result >= 1){
-            echo "<script>alert('Registro incluído com sucesso!');document.location='../view/index.php'</script>";
+            echo "<script>alert('Registro incluído com sucesso!');document.location='../view/ProdutoIndex.php'</script>";
         }else{
             echo "<script>alert('Erro ao gravar registro!');history.back()</script>";
         }
@@ -67,7 +67,7 @@ class ProdutoController{
         $result = $_repository->Update($produto);
 
         if($result >= 1){
-            echo "<script>alert('Registro alterado com sucesso!');document.location='../view/index.php'</script>";
+            echo "<script>alert('Registro alterado com sucesso!');document.location='../view/ProdutoIndex.php'</script>";
         }else{
             echo "<script>alert('Erro ao gravar registro!');history.back()</script>";
         }
@@ -80,7 +80,7 @@ class ProdutoController{
         $result = $_repository->Delete($id);
 
         if($result){
-            echo "<script>alert('Registro deletado com sucesso!');document.location='../view/index.php'</script>";
+            echo "<script>alert('Registro deletado com sucesso!');document.location='../view/ProdutoIndex.php'</script>";
         }else{
             echo "<script>alert('Erro ao deletar registro!');history.back()</script>";
         }
