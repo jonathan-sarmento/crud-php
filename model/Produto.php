@@ -1,5 +1,6 @@
 <?php
 
+
 class Produto{
 
     public $Id;
@@ -7,7 +8,9 @@ class Produto{
     public $Preco;
     public $Quantidade;
     public $FornecedorId;
+    public Fornecedor $Fornecedor;
     public $CategoriaId;
+    public Categoria $Categoria;
 }
     
 ?>

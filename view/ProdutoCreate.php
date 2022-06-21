@@ -2,11 +2,20 @@
 <html>
 <?php include("head.php"); ?>
 <?php require_once("../controller/ProdutoController.php"); ?>
+<?php require_once("../repositories/FornecedorRepository.php"); ?>
+<?php require_once("../repositories/CategoriaRepository.php"); ?>
 <?php
+    $categoriaRepository = new CategoriaRepository();
+    $fornecedorRepository = new FornecedorRepository();
+
+    $fornecedores = $fornecedorRepository->GetAll();
+    $categorias = $categoriaRepository->GetAll();
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $controller = new ProdutoController();
         $controller->CriarProduto();
     }
+
 ?>
 <body>
 <hr>
@@ -15,11 +24,30 @@
     <div class="row">
         <form method="post" action="ProdutoCreate.php" id="form" name="form" onsubmit="validar(document.form); return false;" class="col-10">
             <div class="form-group">
+                <label class="control-label">Nome:</label>
                 <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome do produto" required autofocus>
+                <label class="control-label">Preco:</label>
                 <input class="form-control" type="text" id="preco" name="preco" placeholder="Preco" required>
+                <label class="control-label">Quantidade:</label>
                 <input class="form-control" type="text" id="quantidade" name="quantidade" placeholder="Quantidade" required>
-                <input class="form-control" type="number" id="fornecedor-id" name="fornecedor-id" placeholder="Código do fornecedor" required>
-                <input class="form-control" type="number" id="categoria-id" name="categoria-id" placeholder="Código da categoria" required>
+                <label class="control-label">Fornecedor:</label>
+                <select class="form-select" aria-label="Default select example" id="fornecedor-id" name="fornecedor-id"  required>
+                    <option selected>Nenhum</option>
+                    <?php
+                        foreach($fornecedores as $fornecedor){
+                            echo '<option value="'.$fornecedor->Id."\"".'>'.$fornecedor->RazaoSocial.'</option>';
+                        }                    
+                    ?>
+                </select>
+                <label class="control-label">Categoria:</label>
+                <select class="form-select" aria-label="Default select example" id="categoria-id" name="categoria-id"  required>
+                    <option selected>Nenhum</option>
+                    <?php
+                        foreach($categorias as $categoria){
+                            echo '<option value="'.$categoria->Id."\"".'>'.$categoria->Nome.'</option>';
+                        }                    
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success" id="cadastrar" name="cadastrar" value="Cadastrar">Cadastrar</button>

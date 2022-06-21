@@ -1,6 +1,8 @@
 <?php
 
 require_once("../repositories/ProdutoRepository.php");
+require_once("../repositories/CategoriaRepository.php");
+require_once("../repositories/FornecedorRepository.php");
 class ProdutoController{
 
     public function __construct(){
@@ -10,15 +12,21 @@ class ProdutoController{
     public function ListarProdutos(){
         
         $_repository = new ProdutoRepository();
+        $_fornecedorRepository = new FornecedorRepository();
+        $_categoriaRepository = new CategoriaRepository();
+
         $row = $_repository->GetAll();
         foreach ($row as $produto){
+            $produto->Categoria = $_categoriaRepository->GetById($produto->CategoriaId)[0];
+            $produto->Fornecedor = $_fornecedorRepository->GetById($produto->FornecedorId)[0];
+
             echo "<tr>";
             echo "<th>".$produto->Id ."</th>";
             echo "<th>".$produto->Nome ."</th>";
             echo "<th>R$ ".$produto->Preco ."</th>";
             echo "<th>".$produto->Quantidade ."</th>";
-            echo "<td>".$produto->FornecedorId ."</td>";
-            echo "<td>".$produto->CategoriaId ."</td>";
+            echo "<td>".$produto->Fornecedor->RazaoSocial ."</td>";
+            echo "<td>".$produto->Categoria->Nome ."</td>";
             echo "<td><a class='btn btn-warning' href='ProdutoUpdate.php?id=".$produto->Id."'>Editar</a><a class='btn btn-danger' href='ProdutoDelete.php?id=".$produto->Id."'>Excluir</a></td>";
             echo "</tr>";
         }

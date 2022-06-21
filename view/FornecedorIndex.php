@@ -7,7 +7,6 @@
 <body>
 <?php include("menu.php") ?>
 <h1>Fornecedor</h1>
-<a href="index.php" class="btn btn-default">Inicio</a>
 <a href="FornecedorCreate.php" class="btn btn-success">Cadastar</a>
 <hr>
     <table class="table">

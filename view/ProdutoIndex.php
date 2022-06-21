@@ -7,7 +7,6 @@
 <body>
 <?php include("menu.php") ?>
 <h1>Produto</h1>
-<a href="index.php" class="btn btn-default">Inicio</a>
 <a href="ProdutoCreate.php" class="btn btn-success">Cadastar</a>
 <hr>
     <table class="table">
@@ -17,8 +16,8 @@
                 <th>Nome</th>
                 <th>Preco</th>
                 <th>Quantidade</th>
-                <th>Código do fornecedor</th>
-                <th>Código da categoria</th>
+                <th>Fornecedor</th>
+                <th>Categoria</th>
                 <th>Opções</th>
             </tr>
         </thead>
