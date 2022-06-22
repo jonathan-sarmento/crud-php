@@ -32,7 +32,6 @@
                 <input class="form-control" type="text" id="quantidade" name="quantidade" placeholder="Quantidade" required>
                 <label class="control-label">Fornecedor:</label>
                 <select class="form-select" aria-label="Default select example" id="fornecedor-id" name="fornecedor-id"  required>
-                    <option selected>Nenhum</option>
                     <?php
                         foreach($fornecedores as $fornecedor){
                             echo '<option value="'.$fornecedor->Id."\"".'>'.$fornecedor->RazaoSocial.'</option>';
@@ -41,7 +40,6 @@
                 </select>
                 <label class="control-label">Categoria:</label>
                 <select class="form-select" aria-label="Default select example" id="categoria-id" name="categoria-id"  required>
-                    <option selected>Nenhum</option>
                     <?php
                         foreach($categorias as $categoria){
                             echo '<option value="'.$categoria->Id."\"".'>'.$categoria->Nome.'</option>';

@@ -2,11 +2,19 @@
 <html>
 <?php include("head.php"); 
 require_once("../controller/ProdutoController.php");?>
+<?php require_once("../repositories/FornecedorRepository.php"); ?>
+<?php require_once("../repositories/CategoriaRepository.php"); ?>
 <?php
 
     $id = null;
     $produto = null;
     $controller = null;
+
+    $categoriaRepository = new CategoriaRepository();
+    $fornecedorRepository = new FornecedorRepository();
+
+    $fornecedores = $fornecedorRepository->GetAll();
+    $categorias = $categoriaRepository->GetAll();
 
     $id = filter_input(INPUT_GET, 'id');
     if (!empty($id)) {
@@ -31,10 +39,31 @@ require_once("../controller/ProdutoController.php");?>
                 <input class="form-control" type="text" id="preco" name="preco" value="<?php echo $produto->Preco; ?>" required>
                 <label class="control-label">Quantidade:</label>
                 <input class="form-control" type="number" id="quantidade" name="quantidade" value="<?php echo $produto->Quantidade; ?>" required>
+                
                 <label class="control-label">Fornecedor:</label>
-                <input class="form-control" type="number" id="fornecedor-id" name="fornecedor-id" value="<?php echo $produto->FornecedorId; ?>" required>
+                <select class="form-select" aria-label="Default select example" id="fornecedor-id" name="fornecedor-id"  required>
+                    <?php
+                        foreach($fornecedores as $fornecedor){
+                            if($fornecedor->Id == $produto->FornecedorId){
+                                echo '<option  selected value="'.$fornecedor->Id."\"".'>'.$fornecedor->RazaoSocial.'</option>';
+                            }else{
+                                echo '<option value="'.$fornecedor->Id."\"".'>'.$fornecedor->RazaoSocial.'</option>';
+                            }
+                        }                    
+                    ?>
+                </select>
                 <label class="control-label">Categoria:</label>
-                <input class="form-control" type="number" id="categoria-id" name="categoria-id" value="<?php echo $produto->CategoriaId; ?>" required>
+                <select class="form-select" aria-label="Default select example" id="categoria-id" name="categoria-id"  required>
+                    <?php
+                        foreach($categorias as $categoria){
+                            if($categoria->Id == $produto->CategoriaId){
+                                echo '<option selected value="'.$categoria->Id."\"".'>'.$categoria->Nome.'</option>';
+                            }else{
+                                echo '<option value="'.$categoria->Id."\"".'>'.$categoria->Nome.'</option>';
+                            }
+                        }                    
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $produto->Id;?>">
